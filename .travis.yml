@@ -1,2 +1,4 @@
 language: java
 jdk: openjdk12
+script:
+  - gradle build
