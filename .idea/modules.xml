@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/drive.iml" filepath="$PROJECT_DIR$/drive.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/drive_intTest.iml" filepath="$PROJECT_DIR$/.idea/modules/drive_intTest.iml" group="drive" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/drive_main.iml" filepath="$PROJECT_DIR$/.idea/modules/drive_main.iml" group="drive" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/drive_test.iml" filepath="$PROJECT_DIR$/.idea/modules/drive_test.iml" group="drive" />
     </modules>
