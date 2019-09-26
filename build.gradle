@@ -1,7 +1,7 @@
 plugins {
-	id 'org.springframework.boot' version '2.1.8.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
-	id 'java'
+    id 'org.springframework.boot' version '2.1.8.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java'
 }
 
 group = 'com.open'
@@ -9,11 +9,35 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.12'
 
 repositories {
-	mavenCentral()
+    mavenCentral()
+}
+
+configurations {
+    intTestImplementation.extendsFrom implementation
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 }
+
+sourceSets {
+    intTest {
+        java.srcDir file('src/com/open/drive/java')
+        resources.srcDir file('src/com/open/drive/resources')
+        compileClasspath += sourceSets.main.output + configurations.testRuntime
+        runtimeClasspath += output + compileClasspath
+    }
+}
+
+
+task integrationTest(type: Test) {
+    description = 'Runs integration tests.'
+    group = 'verification'
+
+    testClassesDirs = sourceSets.intTest.output.classesDirs
+    classpath = sourceSets.intTest.runtimeClasspath
+    mustRunAfter test
+}
+
+check.dependsOn integrationTest
