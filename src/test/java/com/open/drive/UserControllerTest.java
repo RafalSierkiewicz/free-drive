@@ -35,7 +35,7 @@ public class UserControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
-    public void getOnUsersShouldReturnOk() throws Exception {
+    public void getUsersShouldReturnOkIfNoRecordsReturned() throws Exception {
         when(repo.findAll()).thenReturn(Collections.emptyList());
         mock.perform(MockMvcRequestBuilders.get("/users").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -43,7 +43,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void getOnUserShouldReturnUser() throws Exception {
+    public void getUserShouldReturnUserWithCorrectId() throws Exception {
         when(repo.findById(user.getId())).thenReturn(Optional.of(user));
         mock.perform(MockMvcRequestBuilders.get("/user?id=" + user.getId()).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -51,7 +51,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void getOnUserShouldReturnNotFoundIfEmpty() throws Exception {
+    public void getUserShouldReturnNotFoundIfEmpty() throws Exception {
         when(repo.findById(user.getId())).thenReturn(Optional.empty());
         mock.perform(MockMvcRequestBuilders.get("/user").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());

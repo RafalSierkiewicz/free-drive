@@ -26,12 +26,12 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    public ResponseEntity getUser(@PathParam("id") final String id) {
+    public ResponseEntity<User> getUser(@PathParam("id") final String id) {
         return repo.findById(id).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping("/user")
-    public ResponseEntity addUser(@RequestBody final User user) {
+    public ResponseEntity<User> addUser(@RequestBody final User user) {
         return ResponseEntity.ok(repo.insert(user));
     }
 }
