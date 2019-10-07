@@ -9,6 +9,7 @@
 .idea/**/shelf
 .idea/**/compiler.xml
 .idea/**/vcs.xml
+.idea/**/misc.xml
 
 # Generated files
 .idea/**/contentModel.xml
@@ -30,6 +31,8 @@
 # When using Gradle or Maven with auto-import, you should exclude module files,
 # since they will be recreated, and may cause churn.  Uncomment if using
 # auto-import.
+.idea/.name
+.idea/.gitignore
 .idea/modules.xml
 .idea/*.iml
 .idea/modules
